@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RENUEVA — Paquetes de limpieza profesional</title>
+  <meta name="description" content="RENUEVA — Paquetes de limpieza residencial, empresarial e industrial. Cotiza por WhatsApp." />
+
+  <style>
+    /* Minimal + inspirado en colores del logo */
+    :root{
+      --red:#d32f2f;
+      --dark-red:#b71c1c;
+      --gold:#d4af37;
+      --bg:#fafafa;
+      --card:#ffffff;
+      --muted:#6b6b6b;
+      --radius:12px;
+      --glass: rgba(255,255,255,0.65);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0; font-family: "Inter", "Segoe UI", Arial, sans-serif; background:var(--bg); color:#222; -webkit-font-smoothing:antialiased;}
+    a {color:inherit}
+
+    /* HEADER */
+    header{
+      position:sticky; top:0; z-index:40;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.75));
+      box-shadow: 0 3px 12px rgba(12,12,12,0.06);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 18px;
+    }
+    .brand {display:flex; align-items:center; gap:12px}
+    .brand img{height:56px; width:auto; border-radius:10px; display:block}
+    .brand h1{font-size:16px; margin:0; letter-spacing:0.4px}
+    .brand p{font-size:12px; margin:0; color:var(--muted)}
+
+    nav{display:flex; gap:12px; align-items:center}
+    nav a{padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:600; color:#222; transition:all .18s}
+    nav a:hover{background:rgba(0,0,0,0.04); transform:translateY(-3px)}
+
+    /* HERO */
+    .hero{
+      display:grid; place-items:center; text-align:center;
+      padding:56px 18px; gap:18px;
+      background: linear-gradient(180deg, #fff 0%, rgba(255,240,235,0.6) 100%);
+    }
+    .hero .wrap{max-width:1100px}
+    .hero h2{color:var(--red); font-size:30px; margin-bottom:6px}
+    .hero p{color:var(--muted); font-size:15px; line-height:1.5; margin-bottom:12px}
+    .cta{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+    .btn{background:var(--red); color:#fff; padding:10px 16px; border-radius:10px; text-decoration:none; font-weight:700; box-shadow:0 8px 24px rgba(211,47,47,0.12); transition:transform .18s}
+    .btn.secondary{background:transparent; border:1px solid rgba(0,0,0,0.06); color:#222; font-weight:700}
+    .btn:hover{transform:translateY(-4px)}
+
+    /* SECTIONS */
+    section{padding:48px 18px}
+    section h3{color:var(--red); margin:0 0 12px 0; font-size:22px}
+    section p.lead{color:var(--muted); margin-bottom:18px; max-width:900px}
+
+    /* SERVICES */
+    .services{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:start}
+    .card{
+      background:var(--card); border-radius:var(--radius); padding:14px;
+      box-shadow: 0 10px 30px rgba(20,20,20,0.05);
+      transition:transform .35s, box-shadow .35s;
+      overflow:hidden;
+    }
+    .card:hover{transform:translateY(-10px); box-shadow:0 18px 40px rgba(20,20,20,0.08)}
+    .card img{width:100%; height:170px; object-fit:cover; border-radius:8px; margin-bottom:12px}
+    .card h4{margin:0 0 8px 0; color:var(--dark-red)}
+    .card p{color:var(--muted); font-size:14px; line-height:1.45}
+    .card .actions{display:flex; gap:8px; margin-top:12px}
+
+    /* Responsive cards stack */
+    @media(max-width:980px){
+      .services{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:680px){
+      .services{grid-template-columns:1fr}
+      header{padding:10px}
+      .brand h1{font-size:14px}
+      .hero h2{font-size:22px}
+      section{padding:32px 14px}
+    }
+
+    /* VIDEOS */
+    .video-grid{display:grid; gap:14px; grid-template-columns:1fr 1fr; align-items:center}
+    .video-frame{width:100%; border-radius:12px; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,0.08)}
+    .video-frame iframe{width:100%; height:260px; border:0; display:block}
+    @media(max-width:900px){ .video-grid{grid-template-columns:1fr} .video-frame iframe{height:200px} }
+
+    /* FAQ */
+    .faq-list{max-width:920px; margin:0 auto; display:grid; gap:10px}
+    details{background:var(--card); padding:12px; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.04)}
+    summary{font-weight:700; cursor:pointer; list-style:none}
+    details[open]{border-left:4px solid var(--red)}
+
+    /* CONTACT */
+    .contact-row{display:flex; gap:18px; align-items:flex-start; justify-content:center; flex-wrap:wrap; max-width:1100px; margin:0 auto}
+    .contact-card{background:var(--card); padding:16px; border-radius:12px; width:320px; box-shadow:0 10px 25px rgba(0,0,0,0.05)}
+    .contact-card h4{margin-top:0; color:var(--dark-red)}
+    .socials{display:flex; gap:8px; flex-direction:column}
+    .socials a{display:inline-flex; align-items:center; gap:8px; padding:10px; border-radius:10px; text-decoration:none; color:#222; background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); border:1px solid rgba(0,0,0,0.03)}
+    .socials a .label{font-weight:700}
+
+    footer{padding:24px; text-align:center; color:#666; font-size:13px}
+
+    /* APPEAR ANIM */
+    .appear{opacity:0; transform:translateY(12px); transition:opacity .6s ease, transform .6s ease}
+    .appear.show{opacity:1; transform:none}
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <img src="logo.jpg" alt="Logo RENUEVA" id="logoImg">
+      <div>
+        <h1>RENUEVA</h1>
+        <p>Limpieza que inspira confianza</p>
+      </div>
+    </div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#videos">Videos</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <h2>Paquetes de limpieza profesional para cada necesidad</h2>
+      <p class="lead">Servicios residenciales, empresariales e industriales con equipos certificados y personal capacitado. Cotiza fácil por WhatsApp.</p>
+      <div class="cta">
+        <a class="btn" href="#servicios">Nuestros paquetes</a>
+        <a class="btn secondary" id="cotizaHero" href="#">Cotizar por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="servicios">
+    <h3>Servicios / Paquetes</h3>
+    <p class="lead">Elige el paquete que se adapta a tu espacio. Haz clic en "Cotizar" y te enviamos un mensaje directo por WhatsApp con una solicitud prellenada.</p>
+
+    <div class="services" id="serviceGrid">
+      <!-- Card 1: Residencial -->
+      <article class="card appear" data-service="Residencial">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1200&q=60" alt="Limpieza Residencial">
+        <h4>Residencial</h4>
+        <p>Plan flexible para hogares: limpieza profunda, mantenimiento semanal, o servicio puntual antes/después de eventos.</p>
+        <div class="actions">
+          <a class="btn" href="#" data-action="whatsapp">Cotizar (WhatsApp)</a>
+        </div>
+      </article>
+
+      <!-- Card 2: Empresarial -->
+      <article class="card appear" data-service="Empresarial">
+        <img src="https://images.unsplash.com/photo-1590490360182-663c0bb3b4e0?auto=format&fit=crop&w=1200&q=60" alt="Limpieza Empresarial">
+        <h4>Empresarial</h4>
+        <p>Mantenimiento de oficinas: limpieza de áreas comunes, cristales, mobiliario y protocolos de higiene para equipos y clientes.</p>
+        <div class="actions">
+          <a class="btn" href="#" data-action="whatsapp">Cotizar (WhatsApp)</a>
+        </div>
+      </article>
+
+      <!-- Card 3: Industrial -->
+      <article class="card appear" data-service="Industrial">
+        <img src="https://images.unsplash.com/photo-1581093588401-6b3d5a5f8a58?auto=format&fit=crop&w=1200&q=60" alt="Limpieza Industrial">
+        <h4>Industrial</h4>
+        <p>Servicios especializados para naves, bodegas y áreas de producción con maquinaria y detergentes industriales certificados.</p>
+        <div class="actions">
+          <a class="btn" href="#" data-action="whatsapp">Cotizar (WhatsApp)</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="videos">
+    <h3>Videos de servicio</h3>
+    <p class="lead">Mira algunos procedimientos y resultados reales. Si tienes videos propios podemos reemplazarlos aquí.</p>
+
+    <div class="video-grid appear" id="videoGrid">
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/1R5QpF9v6bY" title="Video de limpieza" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" title="Demostración" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h3>Preguntas frecuentes</h3>
+    <div class="faq-list appear">
+      <details>
+        <summary>¿Hacen limpieza residencial y servicios puntuales?</summary>
+        <p>Sí. Contamos con planes flexibles: servicio único, semanal, quincenal o mensual según tu necesidad.</p>
+      </details>
+      <details>
+        <summary>¿Ofrecen servicio para oficinas y empresas?</summary>
+        <p>Sí. Tenemos paquetes adaptados a horarios y protocolos empresariales, limpieza de cristales, alfombras y áreas comunes.</p>
+      </details>
+      <details>
+        <summary>¿Realizan limpiezas en naves industriales?</summary>
+        <p>Sí. Limpieza con maquinaria especializada para suelos, equipos y áreas de producción, siguiendo normas de seguridad.</p>
+      </details>
+      <details>
+        <summary>¿Cómo solicito una cotización?</summary>
+        <p>Haz clic en "Cotizar (WhatsApp)" en el servicio que te interesa o usa el botón de contacto; recibirás un mensaje prellenado para completar tus datos.</p>
+      </details>
+      <details>
+        <summary>¿Los productos son seguros para mascotas?</summary>
+        <p>Usamos fórmulas seguras y notificamos sobre tiempos de ventilación si el servicio requiere productos fuertes.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contacto">
+    <h3>Contacto</h3>
+    <p class="lead">Escríbenos directamente por WhatsApp o visita nuestras redes sociales.</p>
+
+    <div class="contact-row appear">
+      <div class="contact-card">
+        <h4>Contacta por WhatsApp</h4>
+        <p style="color:var(--muted); margin-bottom:12px">Mensaje directo y cotizaciones rápidas.</p>
+        <a class="btn" id="waMain" href="https://wa.me/50251957338" target="_blank" rel="noopener">Abrir WhatsApp</a>
+      </div>
+
+      <div class="contact-card">
+        <h4>Nuestras redes</h4>
+        <div class="socials">
+          <a href="https://www.tiktok.com/@renueva479?_t=ZM-90svGXhCKGi&_r=1" target="_blank" rel="noopener">
+            <span class="label">TikTok</span> <span style="color:var(--muted)">@renueva479</span>
+          </a>
+          <a href="https://wa.me/50251957338" target="_blank" rel="noopener">
+            <span class="label">WhatsApp</span> <span style="color:var(--muted)">+502 5195 7338</span>
+          </a>
+          <a href="https://www.facebook.com/share/1D45rrYFwS/" target="_blank" rel="noopener">
+            <span class="label">Facebook</span> <span style="color:var(--muted)">/RENUEVA</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>&copy; <span id="y"></span> RENUEVA — Limpieza que inspira.</div>
+    <div style="margin-top:6px; color:var(--muted)">Diseño minimalista • Cotiza por WhatsApp</div>
+  </footer>
+
+  <script>
+    // Inserta año
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Smooth scroll for nav
+    document.querySelectorAll('nav a').forEach(a=>{
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    // Appear animation
+    const appearEls = document.querySelectorAll('.appear');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting) en.target.classList.add('show');
+      });
+    }, {threshold: 0.15});
+    appearEls.forEach(el=>io.observe(el));
+
+    // WhatsApp cotizar handlers
+    const WHATS_LINK = 'https://wa.me/50251957338'; // tu enlace enviado
+    // Handler for individual service cards' cotizar buttons:
+    document.querySelectorAll('.card a[data-action="whatsapp"]').forEach(btn=>{
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        const card = btn.closest('.card');
+        const service = card ? (card.dataset.service || card.querySelector('h4')?.textContent || 'Servicio') : 'Servicio';
+        const text = `Hola RENUEVA, quiero cotizar el servicio: ${service}. Mi nombre es ___, teléfono ___, dirección ___, detalles: ___`;
+        const url = `${WHATS_LINK}?text=${encodeURIComponent(text)}`;
+        window.open(url, '_blank');
+      });
+    });
+
+    // Hero cotizar
+    document.getElementById('cotizaHero').addEventListener('click', function(e){
+      e.preventDefault();
+      const text = `Hola RENUEVA, quiero información y cotización. Mi nombre es ___, teléfono ___, dirección ___, detalles: ___`;
+      window.open(`${WHATS_LINK}?text=${encodeURIComponent(text)}`, '_blank');
+    });
+
+    // Ensure main WA button uses the same link
+    document.getElementById('waMain').addEventListener('click', function(){
+      // opens directly via href
+    });
+
+  </script>
+</body>
+</html>
+
